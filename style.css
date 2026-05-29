@@ -15,7 +15,7 @@
 
 body {
   font-family: var(--sans);
-  background: var(--bg);
+  background: linear-gradient(135deg, #fa3e3e 0%, #fcc162 40%, #ffffff 100%);
   color: var(--ink);
   min-height: 100vh;
   display: flex;
@@ -158,6 +158,31 @@ button[type="submit"]:active { transform: scale(.98); }
 }
 .result-item.highlight { border-color: var(--accent-2); }
 .result-item.highlight .r-value { color: var(--accent-2); }
+
+/* ── Hover Function ── */
+.result-item {
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  position: relative;
+}
+.result-item:hover { background: #edeae3; }
+.result-item:hover::after {
+  content: "copy";
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+.result-item.copied { border-color: var(--accent-2); }
+.result-item.copied::after {
+  content: "copied ✓";
+  color: var(--accent-2);
+}
+
 
 /* ── Semester list ── */
 #semesterList {

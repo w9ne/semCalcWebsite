@@ -63,6 +63,13 @@ function calculate(numSemesters, coa, sponsorFunds, personalFunds) {
   return { sponsor: result1, personal: result2, iwork: result3 };
 }
 
+function copyToClipboard(text, el) {
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add("copied");
+    setTimeout(() => el.classList.remove("copied"), 1500);
+  });
+}
+
 function onSubmit() {
   if (!validate()) return;
 
