@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semester Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">BYU–Hawaii</p>
+    <h1>Semester <span>Calculator</span></h1>
+  </header>
+
+  <div class="card">
+
+    <!-- SECTION: Timeline -->
+    <p class="section-label">Program Timeline</p>
+
+    <div class="row-2">
+      <div class="field">
+        <label for="startSem">Starting Semester</label>
+        <select id="startSem">
+          <option value="">— select —</option>
+          <option value="Winter">Winter</option>
+          <option value="Spring">Spring</option>
+          <option value="Fall">Fall</option>
+        </select>
+        <p class="err-msg" id="err-startSem">Required</p>
+      </div>
+      <div class="field">
+        <label for="startYear">Starting Year</label>
+        <input type="number" id="startYear" placeholder="2024" min="2000" max="2100" />
+        <p class="err-msg" id="err-startYear">Enter a valid year</p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="numSemesters">Number of Semesters Left</label>
+      <input type="number" id="numSemesters" placeholder="e.g. 6" min="1" max="24" />
+      <p class="err-msg" id="err-numSemesters">Enter a number between 1–24</p>
+    </div>
+
+    <!-- SECTION: Finances -->
+    <p class="section-label">Financial Information</p>
+
+    <div class="field">
+      <label for="costOfAttendance">Cost of Attendance</label>
+      <div class="hint">Annual amount</div>
+      <input type="number" id="costOfAttendance" placeholder="0" min="0" />
+    </div>
+
+    <div class="field">
+      <label for="prgSponFunds">Program Sponsor Funds</label>
+      <div class="hint">Annual amount</div>
+      <input type="number" id="prgSponFunds" placeholder="0" min="0" />
+    </div>
+
+    <div class="field">
+      <label for="personalFunds">Personal Funds</label>
+      <div class="hint">Annual amount</div>
+      <input type="number" id="personalFunds" placeholder="0" min="0" />
+    </div>
+
+    <button type="submit" onclick="onSubmit()">Calculate →</button>
+
+    <!-- RESULTS -->
+    <div id="results">
+      <p class="section-label" style="margin-top:0">Results</p>
+
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="r-label">Program Sponsor Funds</div>
+          <div class="r-value" id="r-sponsor">—</div>
+        </div>
+        <div class="result-item">
+          <div class="r-label">Personal Funds</div>
+          <div class="r-value" id="r-personal">—</div>
+        </div>
+        <div class="result-item">
+          <div class="r-label">IWORK Employment</div>
+          <div class="r-value" id="r-iwork">—</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="r-label">Graduation</div>
+          <div class="r-value" id="r-grad">—</div>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-top:16px">Semester Breakdown</p>
+      <div id="semesterList"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
