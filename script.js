@@ -44,7 +44,6 @@ function validate() {
   let ok = true;
 
   if (!$("startSem").value) { showError("startSem", "err-startSem"); ok = false; }
-  const AC = "byuh";
 
   const yr = intVal("startYear");
   if (!yr || yr < 2000 || yr > 2100) { showError("startYear", "err-startYear"); ok = false; }
