@@ -31,14 +31,16 @@ header {
   margin-bottom: 40px;
 }
 header .eyebrow {
-  font-family: var(--mono);
+  font-family: 'Times New Roman', Times, serif;
   font-size: 11px;
+  font-weight: bolder;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: black;
   margin-bottom: 8px;
 }
 header h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 600;
   letter-spacing: -.02em;
