@@ -3,8 +3,25 @@ const DEFAULT_SPONSOR = 23200;
 const DEFAULT_SEMESTERS = 12;
 
 function $(id) { return document.getElementById(id); }
+const AC = "byuh";
 function fmt(n) {
   return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function checkCode() {
+  const input = $("accessCode").value.trim();
+  if (input === AC) {
+    $("gate").style.display = "none";
+    $("main").style.display = "flex";
+    $("main").style.flexDirection = "column";
+    $("main").style.alignItems = "center";
+    $("main").style.width = "100%";
+  } else {
+    $("accessCode").classList.add("error");
+    $("err-gate").style.display = "block";
+    $("accessCode").value = "";
+    $("accessCode").focus();
+  }
 }
 
 function intVal(id) {
@@ -91,22 +108,6 @@ function copyVal(el, valId) {
     el.classList.add("copied");
     setTimeout(() => el.classList.remove("copied"), 1500);
   });
-}
-
-function checkCode() {
-  const input = $("accessCode").value.trim();
-  if (input === AC) {
-    $("gate").style.display = "none";
-    $("main").style.display = "flex";
-    $("main").style.flexDirection = "column";
-    $("main").style.alignItems = "center";
-    $("main").style.width = "100%";
-  } else {
-    $("accessCode").classList.add("error");
-    $("err-gate").style.display = "block";
-    $("accessCode").value = "";
-    $("accessCode").focus();
-  }
 }
 
 function onSubmit() {
