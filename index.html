@@ -14,7 +14,30 @@
     <h1>Semester <span>Calculator</span></h1>
   </header>
 
+    <!-- ID GATE -->
+  <div id="gate" class="card" style="max-width:360px">
+    <p class="eyebrow" style="text-align:center; margin-bottom:8px">BYU–Hawaii</p>
+    <h2 style="text-align:center; font-size:1.1rem; margin-bottom:24px">Enter Access Code</h2>
+    <div class="field">
+      <label for="accessCode">Access Code</label>
+      <input type="password" id="accessCode" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkCode()" />
+      <p class="err-msg" id="err-gate" style="display:none">Incorrect code. Please try again.</p>
+    </div>
+    <button type="submit" onclick="checkCode()">Continue →</button>
+  </div>
+
+<div id="main" style="display:none; width:100%">
   <div class="card">
+    <!-- SECTION: Student Status -->
+    <p class="section-label">Student Status</p>
+
+    <label class="checkbox-field" for="returningStudent">
+      <input type="checkbox" id="returningStudent" onchange="onReturningChange()" />
+      <div class="cb-text">
+        <span class="cb-label">Is this a returning student?</span>
+        <!-- <span class="cb-hint">Is this a returning student?</span> -->
+      </div>
+    </label>
 
     <!-- SECTION: Timeline -->
     <p class="section-label">Program Timeline</p>
@@ -32,15 +55,18 @@
       </div>
       <div class="field">
         <label for="startYear">Starting Year</label>
-        <input type="number" id="startYear" placeholder="2024" min="2000" max="2100" />
+        <input type="number" id="startYear" min="2000" max="2100" placeholder="Input starting year" />
         <p class="err-msg" id="err-startYear">Enter a valid year</p>
       </div>
     </div>
 
     <div class="field">
       <label for="numSemesters">Number of Semesters Left</label>
-      <input type="number" id="numSemesters" placeholder="e.g. 6" min="1" max="24" />
-      <p class="err-msg" id="err-numSemesters">Enter a number between 1–24</p>
+      <div class="semester-display">
+        <input type="number" id="numSemesters" min="1" max="12" placeholder="Input number of semesters" />
+        <span class="auto-badge" id="autoBadge">auto: 12</span>
+      </div>
+      <p class="err-msg" id="err-numSemesters">Enter a number between 1–12</p>
     </div>
 
     <!-- SECTION: Finances -->
@@ -49,19 +75,22 @@
     <div class="field">
       <label for="costOfAttendance">Cost of Attendance</label>
       <div class="hint">Annual amount</div>
-      <input type="number" id="costOfAttendance" placeholder="0" min="0" />
+      <input type="number" id="costOfAttendance" placeholder="0" min="0" value="32300" />
+      <p class="sponsor-note" id="sponsorNote">↳ suggested amount pre-filled</p>
     </div>
 
     <div class="field">
-      <label for="prgSponFunds">Program Sponsor Funds</label>
+      <label for="prgSponFunds">Program Sponsor Funds/IWORK Funds</label>
       <div class="hint">Annual amount</div>
-      <input type="number" id="prgSponFunds" placeholder="0" min="0" />
+      <input type="number" id="prgSponFunds" placeholder="37200" min="0" value="23000" />
+      <p class="sponsor-note" id="sponsorNote">↳ suggested amount pre-filled</p>
     </div>
 
     <div class="field">
       <label for="personalFunds">Personal Funds</label>
       <div class="hint">Annual amount</div>
-      <input type="number" id="personalFunds" placeholder="0" min="0" />
+      <input type="number" id="personalFunds" placeholder="eg. 600" min="0" />
+      <p class="sponsor-note" id="sponsorNote">↳ suggested amount pre-filled</p>
     </div>
 
     <button type="submit" onclick="onSubmit()">Calculate →</button>
@@ -71,19 +100,19 @@
       <p class="section-label" style="margin-top:0">Results</p>
 
       <div class="result-grid">
-        <div class="result-item">
+        <div class="result-item" onclick="copyVal(this, 'r-sponsor')">
           <div class="r-label">Program Sponsor Funds</div>
           <div class="r-value" id="r-sponsor">—</div>
         </div>
-        <div class="result-item">
+        <div class="result-item" onclick="copyVal(this, 'r-personal')">
           <div class="r-label">Personal Funds</div>
           <div class="r-value" id="r-personal">—</div>
         </div>
-        <div class="result-item">
+        <div class="result-item" onclick="copyVal(this, 'r-iwork')">
           <div class="r-label">IWORK Employment</div>
           <div class="r-value" id="r-iwork">—</div>
         </div>
-        <div class="result-item highlight">
+        <div class="result-item highlight" onclick="copyVal(this, 'r-grad')">
           <div class="r-label">Graduation</div>
           <div class="r-value" id="r-grad">—</div>
         </div>
@@ -94,7 +123,13 @@
     </div>
 
   </div>
+  </div>
 
   <script src="script.js"></script>
+  <script src="config.js"></script>
 </body>
+<footer>
+  <p class="footer-eyebrow">BYU–Hawaii</p>
+  <p class="footer-copy">2026 &copy Wong9ne</p>
+</footer>
 </html>

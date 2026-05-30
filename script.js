@@ -1,7 +1,24 @@
 const SEMESTERS = ["Winter", "Spring", "Fall"];
+const DEFAULT_SPONSOR = 23200;
+const DEFAULT_SEMESTERS = 12;
+
+function checkCode() {
+  const input = $("accessCode").value.trim();
+  if (input === ac) {
+    $("gate").style.display = "none";
+    $("main").style.display = "flex";
+    $("main").style.flexDirection = "column";
+    $("main").style.alignItems = "center";
+    $("main").style.width = "100%";
+  } else {
+    $("accessCode").classList.add("error");
+    $("err-gate").style.display = "block";
+    $("accessCode").value = "";
+    $("accessCode").focus();
+  }
+}
 
 function $(id) { return document.getElementById(id); }
-
 function fmt(n) {
   return "$" + Math.round(n).toLocaleString("en-US");
 }
@@ -36,6 +53,26 @@ function validate() {
   return ok;
 }
 
+function onReturningChange() {
+  const isReturning = $("returningStudent").checked;
+  const semInput = $("numSemesters");
+  const badge = $("autoBadge");
+
+  if (!isReturning) {
+    // New student — lock to 12 semesters automatically
+    semInput.value = DEFAULT_SEMESTERS;
+    semInput.readOnly = true;
+    semInput.style.opacity = "0.6";
+    badge.classList.add("visible");
+  } else {
+    // Returning student — let them enter their own number
+    semInput.value = "";
+    semInput.readOnly = false;
+    semInput.style.opacity = "1";
+    badge.classList.remove("visible");
+  }
+}
+
 function predictSemester(startSem, startYear, numSemesters) {
   const startIdx = SEMESTERS.indexOf(startSem);
   const list = [];
@@ -63,7 +100,8 @@ function calculate(numSemesters, coa, sponsorFunds, personalFunds) {
   return { sponsor: result1, personal: result2, iwork: result3 };
 }
 
-function copyToClipboard(text, el) {
+function copyVal(el, valId) {
+  const text = $(valId).textContent;
   navigator.clipboard.writeText(text).then(() => {
     el.classList.add("copied");
     setTimeout(() => el.classList.remove("copied"), 1500);
@@ -102,3 +140,6 @@ function onSubmit() {
   $("results").classList.add("visible");
   $("results").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
+// Initialize on load — default state is new student (unchecked)
+onReturningChange();

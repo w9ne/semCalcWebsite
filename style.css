@@ -21,7 +21,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 16px 80px;
+  justify-content: space-between; 
+  padding: 48px 16px 0;        
 }
 
 /* ── Header ── */
@@ -102,6 +103,71 @@ header h1 span { color: var(--accent); }
 
 .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+/* ── Checkbox field ── */
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.checkbox-field:hover { border-color: var(--accent); }
+.checkbox-field input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.checkbox-field .cb-text { flex: 1; }
+.checkbox-field .cb-label {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+}
+.checkbox-field .cb-hint {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+  margin-top: 2px;
+}
+
+/* ── Semester field with auto badge ── */
+.semester-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.semester-display input { flex: 1; }
+
+.auto-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: #e8f0fb;
+  color: var(--accent-2);
+  border: 1px solid #b8cef0;
+  border-radius: 4px;
+  padding: 3px 7px;
+  white-space: nowrap;
+  display: none;
+}
+.auto-badge.visible { display: inline-block; }
+
+/* ── Sponsor note ── */
+.sponsor-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent-2);
+  margin-top: 4px;
+}
+
 /* ── Submit ── */
 button[type="submit"] {
   width: 100%;
@@ -141,26 +207,6 @@ button[type="submit"]:active { transform: scale(.98); }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 12px 14px;
-}
-.result-item .r-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.result-item .r-value {
-  font-family: var(--mono);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--ink);
-}
-.result-item.highlight { border-color: var(--accent-2); }
-.result-item.highlight .r-value { color: var(--accent-2); }
-
-/* ── Hover Function ── */
-.result-item {
   cursor: pointer;
   transition: border-color .15s, background .15s;
   position: relative;
@@ -182,7 +228,22 @@ button[type="submit"]:active { transform: scale(.98); }
   content: "copied ✓";
   color: var(--accent-2);
 }
-
+.result-item .r-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.result-item .r-value {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.result-item.highlight { border-color: var(--accent-2); }
+.result-item.highlight .r-value { color: var(--accent-2); }
 
 /* ── Semester list ── */
 #semesterList {
@@ -206,4 +267,29 @@ button[type="submit"]:active { transform: scale(.98); }
   color: var(--accent);
   margin-top: 3px;
   display: none;
+}
+
+/* FOOTER */
+footer {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  padding: 32px 16px;
+  margin-top: 48px;
+  align-self: flex-end; 
+}
+
+footer .footer-eyebrow {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+}
+
+footer .footer-copy {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgb(0, 0, 0);
+  letter-spacing: .06em;
 }
