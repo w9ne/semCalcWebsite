@@ -1,10 +1,11 @@
 const SEMESTERS = ["Winter", "Spring", "Fall"];
 const DEFAULT_SPONSOR = 23200;
 const DEFAULT_SEMESTERS = 12;
+const AC = "byuh";
 
 function checkCode() {
   const input = $("accessCode").value.trim();
-  if (input === ac) {
+  if (input === AC) {
     $("gate").style.display = "none";
     $("main").style.display = "flex";
     $("main").style.flexDirection = "column";
