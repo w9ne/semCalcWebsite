@@ -1,23 +1,6 @@
 const SEMESTERS = ["Winter", "Spring", "Fall"];
 const DEFAULT_SPONSOR = 23200;
 const DEFAULT_SEMESTERS = 12;
-const AC = "byuh";
-
-function checkCode() {
-  const input = $("accessCode").value.trim();
-  if (input === AC) {
-    $("gate").style.display = "none";
-    $("main").style.display = "flex";
-    $("main").style.flexDirection = "column";
-    $("main").style.alignItems = "center";
-    $("main").style.width = "100%";
-  } else {
-    $("accessCode").classList.add("error");
-    $("err-gate").style.display = "block";
-    $("accessCode").value = "";
-    $("accessCode").focus();
-  }
-}
 
 function $(id) { return document.getElementById(id); }
 function fmt(n) {
@@ -44,6 +27,7 @@ function validate() {
   let ok = true;
 
   if (!$("startSem").value) { showError("startSem", "err-startSem"); ok = false; }
+  const AC = "byuh";
 
   const yr = intVal("startYear");
   if (!yr || yr < 2000 || yr > 2100) { showError("startYear", "err-startYear"); ok = false; }
@@ -107,6 +91,22 @@ function copyVal(el, valId) {
     el.classList.add("copied");
     setTimeout(() => el.classList.remove("copied"), 1500);
   });
+}
+
+function checkCode() {
+  const input = $("accessCode").value.trim();
+  if (input === AC) {
+    $("gate").style.display = "none";
+    $("main").style.display = "flex";
+    $("main").style.flexDirection = "column";
+    $("main").style.alignItems = "center";
+    $("main").style.width = "100%";
+  } else {
+    $("accessCode").classList.add("error");
+    $("err-gate").style.display = "block";
+    $("accessCode").value = "";
+    $("accessCode").focus();
+  }
 }
 
 function onSubmit() {
